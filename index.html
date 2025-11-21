@@ -8,12 +8,14 @@
       font-family: Arial;
       margin: 0;
       padding: 0;
-      background: #fafafa;
+      background: #121212;
+      color: #e0e0e0;
     }
     h1{
       text-align: center;
       padding: 15px 0;
       font-size: 22px;
+      color: #ffffff;
     }
     .container{
       width: 90%;
@@ -27,46 +29,48 @@
       margin-top: 15px;
     }
     .card{
-      background: white;
-      border: 1px solid #ddd;
+      background: #1e1e1e;
+      border: 1px solid #333;
       border-radius: 4px;
       cursor: pointer;
+      color: #e0e0e0;
     }
     .card img{
       width: 100%;
       height: 120px;
       object-fit: cover;
+      border-bottom: 1px solid #333;
     }
     .card div{
       padding: 8px;
       font-size: 14px;
     }
-
-    
     #modal{
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.5);
       display: none;
       justify-content: center;
       align-items: center;
     }
     .modal-box{
-      background: white;
+      background: #1e1e1e;
       width: 90%;
       max-width: 350px;
       padding: 15px;
       border-radius: 4px;
+      color: #e0e0e0;
+      border: 1px solid #333;
     }
     .close{
       float: right;
       cursor: pointer;
       font-size: 18px;
+      color: #cccccc;
     }
   </style>
 </head>
 <body>
-
 <h1>Tourist Spots</h1>
 
 <div class="container">
@@ -77,7 +81,7 @@
   <div class="modal-box">
     <span id="close" class="close">×</span>
     <h2 id="mTitle" style="font-size:18px;margin-top:0"></h2>
-    <p id="mCountry" style="color:#555"></p>
+    <p id="mCountry" style="color:#aaaaaa"></p>
     <p id="mDesc"></p>
   </div>
 </div>
@@ -97,10 +101,10 @@
     spots.forEach(s=>{
       const c=document.createElement('div');
       c.className='card';
-      c.innerHTML=`<img src="${s.img}"><div>${s.name}<br><span style='color:#666'>${s.country}</span></div>`;
+      c.innerHTML = `<img src="${s.img}"><div>${s.name}<br><span style="color:#999999">${s.country}</span></div>`;
       c.onclick=()=>openModal(s);
       grid.appendChild(c);
-    })
+    });
   }
 
   function openModal(s){
