@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tourist Places</title>
+  <style>
+    body{
+      font-family: Arial;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+    }
+    h1{
+      text-align: center;
+      padding: 15px 0;
+      font-size: 22px;
+    }
+    .container{
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+    }
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+    .card{
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .card img{
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .card div{
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    /* modal */
+    #modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-box{
+      background: white;
+      width: 90%;
+      max-width: 350px;
+      padding: 15px;
+      border-radius: 4px;
+    }
+    .close{
+      float: right;
+      cursor: pointer;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Tourist Spots</h1>
+
+<div class="container">
+  <div id="grid" class="grid"></div>
+</div>
+
+<div id="modal">
+  <div class="modal-box">
+    <span id="close" class="close">×</span>
+    <h2 id="mTitle" style="font-size:18px;margin-top:0"></h2>
+    <p id="mCountry" style="color:#555"></p>
+    <p id="mDesc"></p>
+  </div>
+</div>
+
+<script>
+  const spots=[
+    {name:'Eiffel Tower',country:'France',desc:'A tall tower in Paris.',img:'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=60'},
+    {name:'Great Wall',country:'China',desc:'A very long wall.',img:'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=600&q=60'},
+    {name:'Taj Mahal',country:'India',desc:'A famous white monument.',img:'file:///C:/Users/Asus/OneDrive/Desktop/images.jpg'},
+{name:'Santorini',country:'Greece',desc:'A small island with white houses.',img:'file:///C:/Users/Asus/OneDrive/Desktop/images (1).jpg'}
+  ];
+
+  const grid=document.getElementById('grid');
+  const modal=document.getElementById('modal');
+
+  function load(){
+    spots.forEach(s=>{
+      const c=document.createElement('div');
+      c.className='card';
+      c.innerHTML=`<img src="${s.img}"><div>${s.name}<br><span style='color:#666'>${s.country}</span></div>`;
+      c.onclick=()=>openModal(s);
+      grid.appendChild(c);
+    })
+  }
+
+  function openModal(s){
+    document.getElementById('mTitle').textContent=s.name;
+    document.getElementById('mCountry').textContent=s.country;
+    document.getElementById('mDesc').textContent=s.desc;
+    modal.style.display='flex';
+  }
+
+  document.getElementById('close').onclick=()=>modal.style.display='none';
+  modal.onclick=e=>{ if(e.target===modal) modal.style.display='none' };
+
+  load();
+</script>
+
+</body>
+</html>
